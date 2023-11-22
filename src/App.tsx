@@ -56,7 +56,7 @@ function App() {
 	return (
 		<>
 			<div className="font-mono navbar bg-base-200 flex-row-reverse">
-				<label className="swap swap-rotate">
+				<label className="swap swap-rotate mx-4">
 					{/* this hidden checkbox controls the state */}
 					<input
 						type="checkbox"
