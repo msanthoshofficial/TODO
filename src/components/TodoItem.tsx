@@ -30,7 +30,7 @@ function TodoItem({ todo }: { todo: Partial<Todo> }) {
 	const { updateTodo, removeTodo, toggleTodo } = useTodoContext();
 
 	const editTodo = () => {
-		updateTodo(todo.id as string, { ...todo });
+		updateTodo(todo.id as string, { ...todo, todo: todoMsg });
 		setIsEditable(false);
 	};
 
@@ -61,10 +61,32 @@ function TodoItem({ todo }: { todo: Partial<Todo> }) {
 						todo.completed ? "line-through italic " : ""
 					}`}
 				>
-					{todoMsg}
+					{isEditable ? (
+						<input
+							type="text"
+							placeholder="Type here"
+							value={todoMsg}
+							onChange={(e) => setTodoMsg(e.target.value)}
+							className="input input-sm input-ghost w-full max-w-xs"
+						/>
+					) : (
+						todoMsg
+					)}
 				</div>
 				<div className="flex justify-center items-center flex-row gap-4">
-					<div className="cursor-pointer">✏️</div>
+					<div
+						className="cursor-pointer"
+						onClick={() => {
+							if (todo.completed) return;
+							if (isEditable) {
+								editTodo();
+							} else {
+								setIsEditable((prev) => !prev);
+							}
+						}}
+					>
+						{isEditable ? "🗃️" : "✏️"}
+					</div>
 					<div
 						className="cursor-pointer"
 						onClick={() => removeTodo(todo.id as string)}
