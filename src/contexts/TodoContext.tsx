@@ -25,10 +25,18 @@ export const TodoContext = createContext<TodoContextType>({
 			date: new Date().toISOString(),
 		},
 	],
-	addTodo: (todo: Partial<Todo>) => {},
-	removeTodo: (id: string) => {},
-	toggleTodo: (id: string) => {},
-	updateTodo: (id: string, todo: Partial<Todo>) => {},
+	addTodo: (todo: Partial<Todo>) => {
+		todo;
+	},
+	removeTodo: (id: string) => {
+		id;
+	},
+	toggleTodo: (id: string) => {
+		id;
+	},
+	updateTodo: (id: string, todo: Partial<Todo>) => {
+		console.log(id, todo);
+	},
 });
 
 export const useTodoContext = () => useContext(TodoContext);
